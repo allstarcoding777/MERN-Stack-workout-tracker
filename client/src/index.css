@@ -1,0 +1,55 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+:root {
+  --primary: turquoise;
+  --error: red;
+}
+
+body {
+  background: rgb(153, 232, 232);;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+  background: rgb(201, 201, 201);
+}
+
+.homepage {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+}
+
+.workout-info {
+background: rgb(201, 201, 201);
+border-radius: 4px;
+margin: 20px auto;
+padding: 20px;
+position: relative;
+box-shadow: 2px 2px 5 px rgba(0,0,0,0.3);
+}
+
+.workout-info h4 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.workout-info p {
+  margin: 0;
+  font-size: 1rem;
+  color: rgb(47, 5, 172)
+}
+
+.workout-info span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: white;
+  padding: 6px;
+  border-radius: 50%;
+  color: black;
+}
+
