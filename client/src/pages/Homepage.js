@@ -1,11 +1,14 @@
 // useEffect() is used to fetch data from the backend, useState() is used to store that data 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useWorkoutContext } from '../hooks/useWorkoutContext'
 
+// components
 import WorkoutInfo from '..//components/WorkoutInfo'
+import WorkoutForm from '..//components/WorkoutForm'
 
 // this is a functional component that returns the homepage content
 const Homepage = () => {
-    const [workouts, setWorkouts] = useState(null)
+    const {workouts, dispatch} = useWorkoutContext()
 
     useEffect(() => {
         const getWorkouts = async () => {
@@ -13,11 +16,11 @@ const Homepage = () => {
         const json = await response.json()
 
         if (response.ok) {
-            setWorkouts(json)
+            dispatch({type: 'SET_WORKOUTS', payload: json})
         }
         }
         getWorkouts()
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="homepage">
@@ -26,6 +29,7 @@ const Homepage = () => {
                 <WorkoutInfo key={workout._id} workout={workout} />
                 ))}
             </div>
+            <WorkoutForm />
         </div>
     )
 }

@@ -1,34 +1,37 @@
 /* google fonts */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 
-:root {
-  --primary: turquoise;
-  --error: red;
+html {
+  min-height: 100%;
 }
 
 body {
-  background: rgb(153, 232, 232);;
+  background: linear-gradient(white, rgb(153, 232, 232), rgb(47, 5, 172));
+}
+
+h1 {
+  font-size: 35px;
+  margin-left: 275px;
 }
 
 header a {
   text-decoration: none;
   color: black;
-  background: rgb(201, 201, 201);
 }
 
 .homepage {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: 100px;
 }
 
 .workout-info {
-background: rgb(201, 201, 201);
-border-radius: 4px;
-margin: 20px auto;
+background: white;
+border-radius: 5px;
+margin: 20px;
 padding: 20px;
 position: relative;
-box-shadow: 2px 2px 5 px rgba(0,0,0,0.3);
+border: solid black;
 }
 
 .workout-info h4 {
@@ -53,3 +56,38 @@ box-shadow: 2px 2px 5 px rgba(0,0,0,0.3);
   color: black;
 }
 
+h3 {
+  font-size: 25px;
+}
+
+label, input {
+  display: block;
+  padding-top: 15px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+form button {
+  background: rgb(47, 5, 172);
+  padding: 8px;
+  margin: 15px 0;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+div.error {
+  padding: 10px;
+  background: white;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+input.error {
+  border: red 1px solid;
+}
