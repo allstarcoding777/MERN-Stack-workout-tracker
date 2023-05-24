@@ -5,12 +5,12 @@ require('dotenv').config()
 const express = require('express')
 // require mongoose, a package that allows us to connect to a database
 const mongoose = require('mongoose')
-
 // require workout routes from routes folder so we can attach them to our application
 const workoutRoutes = require('./routes/Workouts')
-
 // create instance of express application, this will allow us to create a server
 const app = express()
+
+const userRoutes = require('./routes/User')
 
 // middleware to parse incoming data
 app.use(express.json())
@@ -25,6 +25,7 @@ next()
 
 // attaches all workout routes to application from /api/workouts
 app.use('/api/workouts', workoutRoutes)
+app.use('/api/user', userRoutes)
 
 // connect to database using mongoose
 mongoose.connect(process.env.MONGO_URI)
