@@ -1,14 +1,20 @@
+// import useState so we can store the title, weight, and reps of the workout
 import { useState } from "react"
+// need to import useWorkoutContext so we can use the useWorkoutContext hook
 import { useWorkoutContext } from '../hooks/useWorkoutContext'
 
+// WorkoutForm component will display a form to add a new workout
 const WorkoutForm = ()  => {
+    // { dispatch } will be used to update the state of the application
     const { dispatch } = useWorkoutContext()
+    // useState to stores the title, weight, and reps of the workout
     const[title,setTitle] = useState('')
     const[weight,setWeight] = useState('')
     const[reps,setReps] = useState('')
     const [error, setError] = useState(null)
     const [emptyInputs, setEmptyInputs] = useState([])
 
+    // handleSubmit will add a new workout
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -16,18 +22,22 @@ const WorkoutForm = ()  => {
 
         const response = await fetch('/api/workouts', {
             method: 'POST',
+            // convert the workout object to a JSON string
             body: JSON.stringify(workout),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-
+        // converts the response to JSON
         const json = await response.json()
 
+        // if the response is not ok, there is an error
         if (!response.ok) {
             setError(json.error)
             setEmptyInputs(json.emptyInputs)
         }
+
+        // if the response is ok, the workout will be added successfully
         if (response.ok) {
             setTitle('')
             setWeight('')
@@ -38,7 +48,8 @@ const WorkoutForm = ()  => {
             dispatch({type: 'CREATE_WORKOUT', payload: json})
         }
     }
-
+    
+    // form to add a new workout
     return (
         // e.target is the input field the user types in
         <form className="add-workout" onSubmit={handleSubmit}>
@@ -73,4 +84,5 @@ const WorkoutForm = ()  => {
     )
 }
 
+// export the WorkoutForm component so it can be imported in other files
 export default WorkoutForm

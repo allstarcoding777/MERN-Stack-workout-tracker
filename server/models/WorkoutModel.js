@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 // mongoose.Schema is a class that allows us to create a schema for our data
 const Schema = mongoose.Schema
 
-// create a schema for our workouts, schema is a blueprint for our data
+// create a schema for our workouts, schema contains the fields we want our data to have
 const workoutSchema = new Schema({
     title: {
     type: String,

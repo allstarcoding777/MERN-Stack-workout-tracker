@@ -1,5 +1,7 @@
+// Link is used to link to the home page
 import { Link } from "react-router-dom"
 
+// Navbar function will return JSX that will be rendered
 const Navbar = () => {
     return (
         <header>
@@ -12,4 +14,5 @@ const Navbar = () => {
     )
 }
 
+// export the Navbar function so it can be imported in other files
 export default Navbar

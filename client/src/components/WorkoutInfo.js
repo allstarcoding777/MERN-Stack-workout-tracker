@@ -1,12 +1,17 @@
+// import useWorkoutContext so we can use the useWorkoutContext hook
 import { useWorkoutContext } from '../hooks/useWorkoutContext'
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
+// WorkoutInfo component will display the workout information
 const WorkoutInfo = ({ workout }) => {
+    // dispatch is a method to update the state of the application
     const { dispatch } = useWorkoutContext()
-
+    
+    // handleClick will delete a workout
     const handleClick = async () => {
+        // fetch request to delete a workout
         const response = await fetch('/api/workouts/' + workout._id, {
             method: 'DELETE'
         })
@@ -17,6 +22,7 @@ const WorkoutInfo = ({ workout }) => {
         }
     }
 
+    // WorkoutInfo component will display the workout information
     return (
         <div className="workout-info">
             <h4>{workout.title}</h4>
@@ -28,4 +34,5 @@ const WorkoutInfo = ({ workout }) => {
     )
 }
 
+// export the WorkoutInfo component so it can be imported in other files
 export default WorkoutInfo

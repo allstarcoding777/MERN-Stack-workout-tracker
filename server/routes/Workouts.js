@@ -1,4 +1,7 @@
+// Initialize express router to create routes
 const express = require('express')
+
+// Import controller methods to handle routes
 const {
     newWorkout,
     getAllWorkouts,
@@ -25,4 +28,5 @@ router.delete('/:id', deleteWorkout)
 // update a workout
 router.patch('/:id', updateWorkout)
 
+// export router to be used in server.js
 module.exports = router
