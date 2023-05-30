@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import page components
 import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar';
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 
 // App function will return JSX that will be rendered
 function App() {
@@ -14,6 +16,8 @@ function App() {
       <div className="pages">
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           </Routes>
         </div>
       </BrowserRouter>

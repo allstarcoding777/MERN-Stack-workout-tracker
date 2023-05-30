@@ -7,13 +7,17 @@ import './index.css';
 import App from './App';
 // import WorkoutContextProvider so we can use the WorkoutContextProvider component to wrap our application
 import { WorkoutContextProvider } from './context/WorkoutContext';
+// import the AuthContextProvider component so we can wrap our application with it
+import { AuthContextProvider } from './context/AuthenticationContext';
 
 // render the App component to the root element in index.html
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AuthContextProvider>
     <WorkoutContextProvider>
     <App />
     </WorkoutContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
