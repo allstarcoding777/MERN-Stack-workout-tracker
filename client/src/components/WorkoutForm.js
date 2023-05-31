@@ -2,11 +2,15 @@
 import { useState } from "react"
 // need to import useWorkoutContext so we can use the useWorkoutContext hook
 import { useWorkoutContext } from '../hooks/useWorkoutContext'
+// need to import useAuthContext so we can use the useAuthContext hook
+import { useAuthContext } from '../hooks/useAuthenticationContext'
 
 // WorkoutForm component will display a form to add a new workout
 const WorkoutForm = ()  => {
     // { dispatch } will be used to update the state of the application
     const { dispatch } = useWorkoutContext()
+    // { user } will be used to check if the user is logged in
+    const { user } = useAuthContext()
     // useState to stores the title, weight, and reps of the workout
     const[title,setTitle] = useState('')
     const[weight,setWeight] = useState('')
@@ -17,6 +21,11 @@ const WorkoutForm = ()  => {
     // handleSubmit will add a new workout
     const handleSubmit = async (e) => {
         e.preventDefault()
+        // if the user is not logged in, they cannot add a workout
+        if (!user) {
+            setError('You must be logged in to add a workout')
+            return
+        }
 
         const workout = {title, weight, reps}
 
@@ -24,8 +33,10 @@ const WorkoutForm = ()  => {
             method: 'POST',
             // convert the workout object to a JSON string
             body: JSON.stringify(workout),
+            // set the content type to application/json and set the authorization header to the token from the user object
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
         // converts the response to JSON

@@ -1,5 +1,7 @@
 // import useWorkoutContext so we can use the useWorkoutContext hook
 import { useWorkoutContext } from '../hooks/useWorkoutContext'
+// import useAuthContext so we can use the useAuthContext hook
+import { useAuthContext } from '../hooks/useAuthenticationContext'
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
@@ -8,12 +10,20 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 const WorkoutInfo = ({ workout }) => {
     // dispatch is a method to update the state of the application
     const { dispatch } = useWorkoutContext()
+    // invoke useAuthContext to get the user
+    const { user } = useAuthContext()
     
     // handleClick will delete a workout
     const handleClick = async () => {
+        if (!user) {
+            return
+        }
         // fetch request to delete a workout
         const response = await fetch('/api/workouts/' + workout._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         })
         const json =await response.json()
 
