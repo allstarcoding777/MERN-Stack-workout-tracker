@@ -9,6 +9,8 @@ const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/Workouts')
 // create instance of express application, this will allow us to create a server
 const app = express()
+// require path so we can serve static assets if in production
+const path = require('path')
 
 const userRoutes = require('./routes/User')
 
@@ -26,6 +28,16 @@ next()
 // attaches all workout routes to application from /api/workouts
 app.use('/api/workouts', workoutRoutes)
 app.use('/api/user', userRoutes)
+
+// serve stativ assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // set static folder
+  app.use(express.static('client/build'))
+
+  app.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  });
+}
 
 // connect to database using mongoose
 mongoose.connect(process.env.MONGO_URI)
