@@ -1,0 +1,14 @@
+{
+  "name": "mern-stack-workout-tracker",
+  "version": "1.0.0",
+  "description": "workout tracker",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "cd server && npm start",
+    "build": "cd client && npm run build"
+  },
+  "author": "",
+  "license": "ISC"
+}

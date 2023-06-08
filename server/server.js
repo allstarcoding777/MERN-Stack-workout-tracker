@@ -12,6 +12,8 @@ const app = express()
 
 const userRoutes = require('./routes/User')
 
+const path = require('path');
+
 // middleware to parse incoming data
 app.use(express.json())
 
@@ -27,12 +29,20 @@ next()
 app.use('/api/workouts', workoutRoutes)
 app.use('/api/user', userRoutes)
 
+const indexDirPath = path.join(path.basename(__dirname), 'client/build', 'index.html');
+
+app.use(express.static('../client/build'));
+
+app.use((req, res, next) => {
+  res.sendFile('index.html', { root: '../client/build' });
+});
+
 // connect to database using mongoose
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
     // listen for requests on PORT
     app.listen(process.env.PORT, () => {
-      console.log('Connected to database & listening on port', process.env.PORT)
+      console.log(`Connected to database & listening on port ${process.env.PORT}: from  ${indexDirPath}`)
     })  
  })
    // if there is an error connecting to the database, log the error
