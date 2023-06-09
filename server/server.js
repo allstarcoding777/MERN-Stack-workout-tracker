@@ -32,7 +32,6 @@ app.use('/api/user', userRoutes)
 
 const indexDirPath = path.join(path.basename(__dirname), 'client/build', 'index.html');
 
-
 app.get("*",(req, res) => {
   res.sendFile('index.html', { root: '../client/build' });
 });
