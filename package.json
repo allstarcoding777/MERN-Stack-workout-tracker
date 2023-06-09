@@ -10,7 +10,9 @@
   "devDependencies": {},
   "scripts": {
     "start": "cd server && npm start",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "install": "npm install --prefix client && npm install --prefix server",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install && npm run build"
   },
   "author": "",
   "license": "ISC"
