@@ -16,6 +16,7 @@ const path = require('path');
 
 // middleware to parse incoming data
 app.use(express.json())
+app.use(express.static('../client/build'));
 
 // middleware to log requests such as GET, POST, PUT, DELETE
 // req, res are objects that represent the request and response of the server, next is a function that tells express to move on to the next middleware
@@ -31,9 +32,8 @@ app.use('/api/user', userRoutes)
 
 const indexDirPath = path.join(path.basename(__dirname), 'client/build', 'index.html');
 
-app.use(express.static('../client/build'));
 
-app.use((req, res, next) => {
+app.get("*",(req, res) => {
   res.sendFile('index.html', { root: '../client/build' });
 });
 
