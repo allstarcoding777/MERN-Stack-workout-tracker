@@ -20,7 +20,7 @@ const Navbar = () => {
                 </Link>
                 <nav className='nav-items'>
                     {!user && (
-                        <div>
+                        <div className='navbtns'>
                         <Link to="/login">Login</Link>
                         <Link to="/signup">Signup</Link>
                     </div>

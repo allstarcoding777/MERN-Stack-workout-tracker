@@ -53,7 +53,7 @@ border: solid rgb(78, 78, 78);
   background: white;
   padding: 6px;
   border-radius: 50%;
-  color: black;
+  color: black
 }
 
 h3 {
@@ -106,9 +106,9 @@ input.error {
 }
 
 .nav-items {
-float: right;
+/* float: right; */
 padding-right: 50px;
-margin-top: -55px;
+/* margin-top: -55px; */
 font-weight: bold;
 font-size: larger;
 }
@@ -133,4 +133,36 @@ padding: 20px;
 background: white;
 border-radius: 5px;
 border: rgb(78, 78, 78) solid 2px
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* mobile responsive */
+@media (max-width: 600px) {
+  /* fit to screen */
+  h1 {
+    margin-left: 10px;
+  }
+  .homepage {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .add-workout {
+    margin-bottom: -90px;
+  }
+  .nav-items {
+    padding-left: 10px;
+  }
+  .logout {
+    margin-top: 10px;
+    font-size: initial;
+  }
+  span {
+    font-size: initial;
+  }
 }
