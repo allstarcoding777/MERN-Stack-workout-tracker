@@ -29,7 +29,7 @@ const getSingleWorkout = async (req, res) => {
     res.status(200).json(workout)
 }
 
-// create a new workout
+// create new workout
 const newWorkout = async (req, res) => {
 const {title, weight, reps} = req.body
     
